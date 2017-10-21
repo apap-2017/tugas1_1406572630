@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Data Penduduk</title>
+<link href="../css/bootstrap.css" rel="stylesheet" />
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+
+
+
+</head>
+
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.html">SI Kependudukan</a>
+			</div>
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a th:href="@{/index}">Home</a></li>
+					<li><a th:href="@{/index}">Cari Data</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+	<div class="container">
+	
+			<h3  style="margin-bottom:20px" th:text="'Lihat Data Penduduk - ' + ${penduduk.nik}"></h3>
+		<div id="container" class="col-lg-6">
+		
+			<table class="table">
+				<tr>
+					<td>Nomor</td>
+					<td>:</td>
+					<td th:text="${penduduk.nik}"></td>
+				</tr>
+				<tr>
+					<td>Nama</td>
+					<td>:</td>
+					<td th:text="${penduduk.nama}"></td>
+				</tr>
+				<tr>
+					<td>Tempat/Tanggal lahir</td>
+					<td>:</td>
+					<td
+						th:text="${penduduk.tempat_lahir} + ', ' + ${penduduk.tanggal_lahir}"></td>
+				</tr>
+				<tr>
+					<td>Alamat</td>
+					<td>:</td>
+					<td th:text="${keluarga.alamat}"></td>
+				</tr>
+				<tr>
+					<td>RT/RW</td>
+					<td>:</td>
+					<td th:text="${keluarga.RT} + '/' + ${keluarga.RW}"></td>
+				</tr>
+				<tr>
+					<td>Kelurahan/Desa</td>
+					<td>:</td>
+					<td th:text="${alamat.nama_kelurahan}"></td>
+				</tr>
+				<tr>
+					<td>Kacamatan</td>
+					<td>:</td>
+					<td th:text="${alamat.nama_kecamatan}"></td>
+				</tr>
+				<tr>
+					<td>Kota</td>
+					<td>:</td>
+					<td th:text="${alamat.nama_kota}"></td>
+				</tr>
+				<tr>
+					<td>Jenis Kelamin</td>
+					<td>:</td>
+					<td th:text="${penduduk.jenis_kelamin} == 0 ? 'Pria' : 'Wanita'"></td>
+				</tr>
+				<tr>
+					<td>Golongan Darah</td>
+					<td>:</td>
+					<td th:text="${penduduk.golongan_darah}"></td>
+				</tr>
+				<tr>
+					<td>Agama</td>
+					<td>:</td>
+					<td th:text="${penduduk.agama}"></td>
+				</tr>
+				<tr>
+					<td>Status Perkawinan</td>
+					<td>:</td>
+					<td th:text="${penduduk.status_perkawinan}"></td>
+				</tr>
+				<tr>
+					<td>Pekerjaan</td>
+					<td>:</td>
+					<td th:text="${penduduk.pekerjaan}"></td>
+				</tr>
+				<tr>
+					<td>Kewarganegaraan</td>
+					<td>:</td>
+					<td th:text="${penduduk.is_wni} == 1 ? 'WNI' : 'WNA'"></td>
+				</tr>
+				<tr>
+					<td>Status Kematian</td>
+					<td>:</td>
+					<td th:text="${penduduk.is_wafat} == 0 ? 'Hidup' : 'Wafat'"></td>
+				</tr>
+				
+				
+			</table>
+			<button class="btn btn-danger" type="submit">Nonaktifkan</button>
+			
+		</div>
+		
+	</div>
+	<br /> <br /> 
+<div th:replace="fragments/footer"></div>
+</body>
+</html>

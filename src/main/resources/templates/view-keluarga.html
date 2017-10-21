@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Data Keluarga</title>
+<link href="../css/bootstrap.css" rel="stylesheet" />
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/responsive/2.2.0/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/responsive/2.2.0/js/responsive.bootstrap4.min.js"></script>
+
+
+</head>
+
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.html">SI Kependudukan</a>
+			</div>
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a th:href="@{/index}">Home</a></li>
+					<li><a th:href="@{/index}">Cari Data</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+	<div class="container">
+		<h3 style="margin-bottom: 20px"
+			th:text="'Lihat Data Keluarga - ' + ${keluarga.nomor_kk}"></h3>
+		
+		<div id="container" class="col-lg-6">
+
+			<table class="table">
+				<tr>
+					<td>Nomor</td>
+					<td>:</td>
+					<td th:text="${keluarga.nomor_kk}"></td>
+				</tr>
+				<tr>
+					<td>Alamat</td>
+					<td>:</td>
+					<td th:text="${keluarga.alamat}"></td>
+				</tr>
+				<tr>
+					<td>RT/RW</td>
+					<td>:</td>
+					<td th:text="${keluarga.RT} + '/' + ${keluarga.RW}"></td>
+				</tr>
+				<tr>
+					<td>Kelurahan/Desa</td>
+					<td>:</td>
+					<td th:text="${alamat.nama_kelurahan}"></td>
+				</tr>
+				<tr>
+					<td>Kacamatan</td>
+					<td>:</td>
+					<td th:text="${alamat.nama_kecamatan}"></td>
+				</tr>
+				<tr>
+					<td>Kota</td>
+					<td>:</td>
+					<td th:text="${alamat.nama_kota}"></td>
+				</tr>
+			</table>
+		</div>
+		
+		<table class="table table-striped table-bordered dt-responsive nowrap"
+			cellspacing="0" id="table_keluarga" width="100%">
+			<thead>
+				<tr>
+					<th class="text-center">No</th>
+					<th class="text-center">Nama Lengkap</th>
+					<th class="text-center">NIK</th>
+					<th class="text-center">Jenis Kelamin</th>
+					<th class="text-center">Tempat Lahir</th>
+					<th class="text-center">Tanggal Lahir</th>
+					<th class="text-center">Agama</th>
+					<th class="text-center">Pekerjaan</th>
+					<th class="text-center">Status Perkawinan</th>
+					<th class="text-center">Status dalam Keluarga</th>
+					<th class="text-center">Kewarganegaraan</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="anggota_keluarga,iterationStatus: ${anggota_keluarga}">
+					<td class="text-center" th:text="${iterationStatus.count}">No.
+						1</td>
+					<td class="text-center" th:text="${anggota_keluarga.nama}"></td>
+					<td class="text-center" th:text="${anggota_keluarga.nik}"></td>
+					<td class="text-center" th:text="${anggota_keluarga.jenis_kelamin} == 0 ? 'Pria' : 'Wanita'"></td>
+					<td class="text-center" th:text="${anggota_keluarga.tempat_lahir}"></td>
+					<td class="text-center" th:text="${anggota_keluarga.tanggal_lahir}"></td>
+					<td class="text-center" th:text="${anggota_keluarga.agama}"></td>
+					<td class="text-center" th:text="${anggota_keluarga.pekerjaan}"></td>
+					<td class="text-center" th:text="${anggota_keluarga.status_perkawinan}"></td>
+					<td class="text-center" th:text="${anggota_keluarga.status_dalam_keluarga}"></td>
+					<td class="text-center" th:text="${anggota_keluarga.is_wni} == 1 ? 'WNI' : 'WNA'"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div th:replace="fragments/footer"></div>
+
+
+</body>
+</html>
+
+<script>
+	$(document).ready(function() {
+		$('#table_keluarga').DataTable({
+			responsive : true
+		});
+	});
+</script>

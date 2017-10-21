@@ -1,0 +1,10 @@
+msrc/main/java/com/example/controller
+msrc/main/java/com/example/service
+msrc/main/resources/templates
+mtarget/classes/com/example
+mtarget/classes/com/example/controller
+mtarget/classes/com/example/dao
+mtarget/classes/com/example/model
+mtarget/classes/com/example/service
+mtarget/classes/templates
+mtarget/test-classes/com/example
