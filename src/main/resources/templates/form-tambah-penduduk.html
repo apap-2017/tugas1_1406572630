@@ -4,93 +4,108 @@
 <title>Tambah Penduduk</title>
 <link href="../css/bootstrap.css" rel="stylesheet" />
 <script type="text/javascript" src="../js/bootstrap.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 	<div th:replace="fragments/header"></div>
 
 	<div class="container">
-		
-		<div class="container" style='margin-top:20px'>
+
+		<div class="container" style='margin-top: 20px'>
 			<h3>Tambah Penduduk</h3>
-			<form class="form-group" action="/penduduk/tambah/" method="post" th:object="${penduduk}">
-				<div class="row" style="margin-left:15px; margin-right:25px">
-					<h4 for="nama" >Nama</h4>
-					<input class="form-control col-sm-6" type="text" name="nama" th:field="*{nama}" required = "true"></input>
+			<form class="form-group" action="/penduduk/tambah/" method="post"
+				th:object="${penduduk}">
+				<div class="row" style="margin-left: 15px; margin-right: 25px">
+					<h4 for="nama">Nama</h4>
+					<input class="form-control col-sm-6" type="text" name="nama"
+						th:field="*{nama}" required="true"></input>
 				</div>
-				<div class="row" style="margin-left:15px; margin-right:25px">
-					<h4 for="tempat_lahir" >Tempat Lahir</h4>
-					<input class="form-control col-sm-6" type="text" name="tempat_lahir" th:field="*{tempat_lahir}" required = "true"></input>
+				<div class="row" style="margin-left: 15px; margin-right: 25px">
+					<h4 for="tempat_lahir">Tempat Lahir</h4>
+					<input class="form-control col-sm-6" type="text"
+						name="tempat_lahir" th:field="*{tempat_lahir}" required="true"></input>
 				</div>
-				<div class="row" style="margin-left:15px; margin-right:25px">
-					<h4 for="nama" >Tanggal Lahir</h4>
-					<input class="form-control col-sm-6" type="date" name="tanggal_lahir" th:field="*{tanggal_lahir}" required = "true"></input>
+				<div class="row" style="margin-left: 15px; margin-right: 25px">
+					<h4 for="nama">Tanggal Lahir</h4>
+					<input class="form-control col-sm-6" type="date"
+						name="tanggal_lahir" th:field="*{tanggal_lahir}" required="true"></input>
 				</div>
-				<div class="row" style="margin-left:15px; margin-right:25px">
-					<h4 for="jenis_kelamin" >Jenis Kelamin</h4>
-					<select class="form-control" name="jenis_kelamin" th:value="*{jenis_kelamin}" required = "true">
-						<option selected="true" disabled="disabled" th:value="''"></option> 
-				        <option th:value="'0'">Laki-laki</option>
-				        <option th:value="'1'">Perempuan</option>
-				      </select>
+				<div class="row" style="margin-left: 15px; margin-right: 25px">
+					<h4 for="jenis_kelamin">Jenis Kelamin</h4>
+					<select class="form-control" name="jenis_kelamin"
+						th:value="*{jenis_kelamin}" required="true">
+						<option selected="true" disabled="disabled" th:value="''"></option>
+						<option th:value="'0'">Laki-laki</option>
+						<option th:value="'1'">Perempuan</option>
+					</select>
 				</div>
-				<div class="row" style="margin-left:15px; margin-right:25px">
-					<h4 for="golongan_darah" >Golongan Darah</h4>
-					<select class="form-control" id="sel1" name="golongan_darah" th:value="*{golongan_darah}">
-						<option selected="true" disabled="disabled" value=""></option> 
-				        <option th:value="'A+'">A+</option>
-				        <option th:value="'A-'">A-</option>
-				        <option th:value="'B+'">B+</option>
-				        <option th:value="'B-'">B-</option>
-				        <option th:value="'O+'">O+</option>
-				        <option th:value="'O-'">O-</option>
-				        <option th:value="'AB+'">AB+</option>
-				        <option th:value="'AB-'">AB-</option>
-				      </select>
+				<div class="row" style="margin-left: 15px; margin-right: 25px">
+					<h4 for="golongan_darah">Golongan Darah</h4>
+					<select class="form-control" id="sel1" name="golongan_darah"
+						th:value="*{golongan_darah}">
+						<option selected="true" disabled="disabled" value=""></option>
+						<option th:value="'A+'">A+</option>
+						<option th:value="'A-'">A-</option>
+						<option th:value="'B+'">B+</option>
+						<option th:value="'B-'">B-</option>
+						<option th:value="'O+'">O+</option>
+						<option th:value="'O-'">O-</option>
+						<option th:value="'AB+'">AB+</option>
+						<option th:value="'AB-'">AB-</option>
+					</select>
 				</div>
-				<div class="row" style="margin-left:15px; margin-right:25px">
-					<h4 for="status_perkawinan" >Status Perkawinan</h4>
-					<select class="form-control" name="status_perkawinan" th:value="*{status_perkawinan}" required = "true">
-				        <option selected="true" disabled="disabled" value=""></option> 
-				        <option th:value="'Belum Kawin'">Belum Kawin</option>
-				        <option th:value="'Kawin'">Kawin</option>
-				      </select>
+				<div class="row" style="margin-left: 15px; margin-right: 25px">
+					<h4 for="status_perkawinan">Status Perkawinan</h4>
+					<select class="form-control" name="status_perkawinan"
+						th:value="*{status_perkawinan}" required="true">
+						<option selected="true" disabled="disabled" value=""></option>
+						<option th:value="'Belum Kawin'">Belum Kawin</option>
+						<option th:value="'Kawin'">Kawin</option>
+					</select>
 				</div>
-				<div class="row" style="margin-left:15px; margin-right:25px">
-					<h4 for="agama" >Agama</h4>
-					<input class="form-control col-sm-6" type="text" name="agama" th:field="*{agama}" required = "true"></input>
+				<div class="row" style="margin-left: 15px; margin-right: 25px">
+					<h4 for="agama">Agama</h4>
+					<input class="form-control col-sm-6" type="text" name="agama"
+						th:field="*{agama}" required="true"></input>
 				</div>
-				<div class="row" style="margin-left:15px; margin-right:25px">
-					<h4 for="pekerjaan" >Pekerjaan</h4>
-					<input class="form-control col-sm-6" type="text" name="pekerjaan" th:field="*{pekerjaan}" required = "true"></input>
+				<div class="row" style="margin-left: 15px; margin-right: 25px">
+					<h4 for="pekerjaan">Pekerjaan</h4>
+					<input class="form-control col-sm-6" type="text" name="pekerjaan"
+						th:field="*{pekerjaan}" required="true"></input>
 				</div>
-				<div class="row" style="margin-left:15px; margin-right:25px">
-					<h4 for="status_kewarganegaraan" >Status Kewarganegaraan</h4>
-					<select class="form-control" name="status_kewarganegaraan" th:value="*{is_wni}" required = "true">
-						<option selected="true" disabled="disabled" th:value="''"></option> 
-				        <option th:value="'1'">WNI</option>
-				        <option th:value="'0'">WNA</option>
-				      </select>
+				<div class="row" style="margin-left: 15px; margin-right: 25px">
+					<h4 for="status_kewarganegaraan">Status Kewarganegaraan</h4>
+					<select class="form-control" name="status_kewarganegaraan"
+						th:value="*{is_wni}" required="true">
+						<option selected="true" disabled="disabled" th:value="''"></option>
+						<option th:value="'1'">WNI</option>
+						<option th:value="'0'">WNA</option>
+					</select>
 				</div>
-				<div class="row" style="margin-left:15px; margin-right:25px">
-					<h4 for="status_kematian" >Status Kematian</h4>
-					<select class="form-control" name="status_kematian" th:value="*{is_wafat}" required = "true">
-				        <option selected="true" disabled="disabled" value=""></option> 
-				        <option th:value="'0'">Hidup</option>
-				        <option th:value="'1'">Wafat</option>
-				      </select>
+				<div class="row" style="margin-left: 15px; margin-right: 25px">
+					<h4 for="status_kematian">Status Kematian</h4>
+					<select class="form-control" name="status_kematian"
+						th:value="*{is_wafat}" required="true">
+						<option selected="true" disabled="disabled" value=""></option>
+						<option th:value="'0'">Hidup</option>
+						<option th:value="'1'">Wafat</option>
+					</select>
 				</div>
-				<div class="row" style="margin-left:15px; margin-right:25px">
-					<h4 for= "id_keluarga" >Id Keluarga</h4>
-					<input class="form-control col-sm-6" type="text" name="id_keluarga" th:field="*{id_keluarga}" required  = "true"></input>
+				<div class="row" style="margin-left: 15px; margin-right: 25px">
+					<h4 for="id_keluarga">Id Keluarga</h4>
+					<input class="form-control col-sm-6" type="text" name="id_keluarga"
+						th:field="*{id_keluarga}" required="true"></input>
 				</div>
-				<div class="row" style="margin-left:15px; margin-right:25px">
-					<h4 for="status_dalam_keluarga" >Status dalam Keluarga</h4>
-					<select class="form-control" name="status_dalam_keluarga" id="sel1" th:value="*{status_dalam_keluarga}" required = "true">
-				        <option selected="true" disabled="disabled" value=""></option> 
-				        <option th:value="'Kepala Keluarga'">Kepala Keluarga</option>
+				<div class="row" style="margin-left: 15px; margin-right: 25px">
+					<h4 for="status_dalam_keluarga">Status dalam Keluarga</h4>
+					<select class="form-control" name="status_dalam_keluarga" id="sel1"
+						th:value="*{status_dalam_keluarga}" required="true">
+						<option selected="true" disabled="disabled" value=""></option>
+						<option th:value="'Kepala Keluarga'">Kepala Keluarga</option>
 						<option th:value="'Suami'">Suami</option>
 						<option th:value="'Istri'">Istri</option>
 						<option th:value="'Anak'">Anak</option>
@@ -101,13 +116,13 @@
 						<option th:value="'Famili Lain'">Famili Lain</option>
 						<option th:value="'Pembantu'">Pembantu</option>
 						<option th:value="'Lainnya'">Lainnya</option>
-				      </select>
+					</select>
 				</div>
 				<br /> <br />
 				<button class="btn btn-primary" type="submit"
 					style="margin-left: 15px">Simpan</button>
 			</form>
-			
+
 		</div>
 	</div>
 	<br />

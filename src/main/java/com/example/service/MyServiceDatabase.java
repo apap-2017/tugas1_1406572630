@@ -109,8 +109,6 @@ public class MyServiceDatabase implements MyService {
 		return nik_penduduk;
 	}
 
-	
-
 	///////////////// Keluarga//////////////////////
 
 	@Override
@@ -178,7 +176,7 @@ public class MyServiceDatabase implements MyService {
 	public List<KotaModel> selectKotaList() {
 		return myMapper.selectKotaList();
 	}
-	
+
 	@Override
 	public void updateStatusKematian(PendudukModel penduduk) {
 		int id_keluarga = penduduk.getId_keluarga();
@@ -189,39 +187,38 @@ public class MyServiceDatabase implements MyService {
 				wafat = wafat + 1;
 			}
 		}
-		 
+
 		if (wafat == anggota_keluarga.size()) {
-			 myMapper.updateStatusBerlaku(id_keluarga);
+			myMapper.updateStatusBerlaku(id_keluarga);
 		}
 		myMapper.updateStatusKematian(penduduk.getNik());
 	}
-	
+
 	@Override
 	public KecamatanModel selectKecamatanbyID(int id_kecamatan) {
-    	log.info("select kecamatan with id  kecamatan ()", id_kecamatan);
-    	return myMapper.selectKecamatanbyID(id_kecamatan);
-    }
-	
+		log.info("select kecamatan with id  kecamatan ()", id_kecamatan);
+		return myMapper.selectKecamatanbyID(id_kecamatan);
+	}
+
 	@Override
 	public KelurahanModel selectKelurahanbyID(int id_kelurahan) {
 		log.info("select kelurahan with id  kelurahan ()", id_kelurahan);
 		return myMapper.selectKelurahanbyID(id_kelurahan);
 	}
-	
+
 	@Override
-	public List<PendudukModel> selectPendudukByIdKelurahan(int id_kelurahan){
+	public List<PendudukModel> selectPendudukByIdKelurahan(int id_kelurahan) {
 		return myMapper.selectPendudukByIdKelurahan(id_kelurahan);
 	}
-	
+
 	@Override
-	public PendudukModel getPendudukTermudaSekelurahan(int id_kelurahan) {
-		return myMapper.getPendudukTermudaSekelurahan(id_kelurahan);
+	public PendudukModel getPendudukTermuda(int id_kelurahan) {
+		return myMapper.getPendudukTermuda(id_kelurahan);
 	}
-	
+
 	@Override
-	public PendudukModel getPendudukTertuaSekelurahan(int id_kelurahan) {
-		return myMapper.getPendudukTertuaSekelurahan(id_kelurahan);
+	public PendudukModel getPendudukTertua(int id_kelurahan) {
+		return myMapper.getPendudukTertua(id_kelurahan);
 	}
-	
-	
+
 }

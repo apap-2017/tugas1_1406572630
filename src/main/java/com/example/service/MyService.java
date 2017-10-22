@@ -52,9 +52,9 @@ public interface MyService {
 
 	List<PendudukModel> selectPendudukByIdKelurahan(int id_kelurahan);
 
-	PendudukModel getPendudukTermudaSekelurahan(int id_kelurahan);
+	PendudukModel getPendudukTermuda(int id_kelurahan);
 
-	PendudukModel getPendudukTertuaSekelurahan(int id_kelurahan);
+	PendudukModel getPendudukTertua(int id_kelurahan);
 
 
 }

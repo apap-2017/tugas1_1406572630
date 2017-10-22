@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:include="fragments/head :: head('400 Bad Request')">
+	</head>
+	<body>
+		<div th:replace="fragments/header ::header"></div>
+		<div class="container">
+			<h2 class="h2 page-header">Request anda salah</h2>
+			<h6 class="h6">Coba cek input yang anda masukkan</h6>
+		</div>
+	</body>
+</html>
