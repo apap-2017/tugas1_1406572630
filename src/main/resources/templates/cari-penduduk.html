@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Cari Penduduk</title>
+</head>
+
+<body>
+	<div th:replace="fragments/header"></div>
+
+	<div class="container">
+		<div th:if="${view} == null" class="container"
+			style='margin-top: 25px'>
+			<h3>Cari Penduduk</h3>
+			<form class="form-group" action="/penduduk/cari" method="get">
+				<div th:if="${view} == null" class="row" style="margin-left: 15px">
+					<h4 for="kode_kota">Lihat data penduduk berdasarkan kota</h4>
+					<select class="form-control" name="kt" required="true">
+						<option th:if="${nama_kota} != null" readonly="readonly"
+							th:value="${id_kota}" th:text="${nama_kota}"></option>
+						<option th:if="${nama_kota} == null" selected="true"
+							disabled="disabled"></option>
+						<option th:if="${nama_kota} == null"
+							th:each="kota,iterationStatus: ${kota_list}"
+							th:value="${kota.id}" th:text="${kota.nama_kota}">Kota</option>
+					</select>
+				</div>
+				<div th:if="${nama_kota} != null" class="row"
+					style="margin-left: 15px">
+					<h4 for="kode_kecamatan">Lihat data penduduk berdasarkan
+						kecamatan</h4>
+					<select class="form-control" name="kc">
+						<option th:if="${nama_kecamatan} != null"
+							th:value="${id_kecamatan}" readonly="readonly"
+							th:text="${nama_kecamatan}"></option>
+						<option th:if="${nama_kecamatan} == null" selected="true"
+							disabled="disabled"></option>
+						<option th:if="${nama_kecamatan} == null"
+							th:each="kecamatan,iterationStatus: ${kecamatan_list}"
+							th:value="${kecamatan.id}" th:text="${kecamatan.nama_kecamatan}">Kecamatan</option>
+					</select>
+				</div>
+				<div th:if="${nama_kecamatan} != null" class="row"
+					style="margin-left: 15px">
+					<h4 for="kode_kecamatan">Lihat data penduduk berdasarkan
+						kelurahan</h4>
+					<select class="form-control" name="kl">
+						<option th:if="${nama_kelurahan} != null"
+							th:value="${id_kelurahan}" readonly="readonly"
+							th:text="${nama_kelurahan}"></option>
+						<option th:if="${nama_kelurahan} == null" selected="true"
+							disabled="disabled"></option>
+						<option th:if="${nama_kelurahan} == null"
+							th:each="kelurahan,iterationStatus: ${kelurahan_list}"
+							th:value="${kelurahan.id}" th:text="${kelurahan.nama_kelurahan}">Kelurahan</option>
+					</select>
+				</div>
+				<div>
+				<br/>
+					<button class="btn btn-primary" style="margin-top: 10px; margin-left: 15px"
+						type="submit">Lihat</button>
+				</div>
+			</form>
+		</div>
+
+		<div th:if="${view} != null" class="container"
+			style='margin-top: 25px'>
+			<h4
+				th:text="'Lihat data penduduk di ' + ${nama_kota} +  ' Kecamatan ' + ${nama_kecamatan} + ' Kelurahan ' + ${nama_kelurahan}"></h4>
+			<hr />
+			<div class="row container">
+				<div class="col-sm-4" style="float: left;">
+					<h5 style="margin-left: 5px"><strong>Penduduk Termuda</strong></h5>
+					<table class="table table-condensed">
+						<tr>
+							<td>NIK</td>
+							<td>
+								<button class="btn-link" th:text="${penduduk_termuda.nik}"
+									th:value="${penduduk_termuda.nik}"
+									onclick="lihatNik(this.value)"
+									style="padding: 0px 0px 0px 0px;"></button>
+							</td>
+						</tr>
+						<tr>
+							<td>Nama</td>
+							<td th:text="${penduduk_termuda.nama}"></td>
+						</tr>
+						<tr>
+							<td>Tanggal Lahir</td>
+							<td th:text="${penduduk_termuda.tanggal_lahir}"></td>
+						</tr>
+					</table>
+				</div>
+				<div class="col-sm-4" style="float: left; margin-left: 20%">
+					<h5 style="margin-left: 5px"><strong>Penduduk Tertua</strong></h5>
+					<table class="table table-condensed">
+						<tr>
+							<td>NIK</td>
+							<td>
+								<button class="btn-link" th:text="${penduduk_tertua.nik}"
+									th:value="${penduduk_tertua.nik}"
+									onclick="lihatNik(this.value)"
+									style="padding: 0px 0px 0px 0px;"></button>
+							</td>
+						</tr>
+						<tr>
+							<td>Nama</td>
+							<td th:text="${penduduk_tertua.nama}"></td>
+						</tr>
+						<tr>
+							<td>Tanggal Lahir</td>
+							<td th:text="${penduduk_tertua.tanggal_lahir}"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<hr />
+			<table id="table-penduduk" class="display table">
+				<thead>
+					<tr>
+						<th>NIK</th>
+						<th>Nama</th>
+						<th>Jenis Kelamin</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="penduduk,iterationStatus: ${penduduk_list}">
+						<td>
+							<button class="btn-link" th:text="${penduduk.nik}"
+								th:value="${penduduk.nik}" onclick="lihatNik(this.value)"
+								style="padding: 0px 0px 0px 0px;"></button>
+						</td>
+						<td th:text="${penduduk.nama}"></td>
+						<td
+							th:text="${penduduk.jenis_kelamin} == 0 ? 'Laki-laki' : 'Perempuan'"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div></div>
+		<br />
+		<div th:replace="fragments/footer"></div>
+</body>
+</html>
+
+<script>
+	$(document).ready(function() {
+		$('#table_penduduk').DataTable({
+			responsive : true
+		});
+	});
+</script>

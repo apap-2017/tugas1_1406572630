@@ -46,5 +46,15 @@ public interface MyService {
 
 	void updateStatusKematian(PendudukModel penduduk);
 
+	KecamatanModel selectKecamatanbyID(int id_kecamatan);
+
+	KelurahanModel selectKelurahanbyID(int id_kelurahan);
+
+	List<PendudukModel> selectPendudukByIdKelurahan(int id_kelurahan);
+
+	PendudukModel getPendudukTermudaSekelurahan(int id_kelurahan);
+
+	PendudukModel getPendudukTertuaSekelurahan(int id_kelurahan);
+
 
 }

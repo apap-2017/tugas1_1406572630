@@ -42,6 +42,7 @@ public class TheController {
 
 		PendudukModel penduduk = myService.selectPenduduk(nik);
 		KeluargaModel keluarga = myService.selectKeluargabyID(penduduk.getId_keluarga());
+		System.out.println(keluarga);
 		AlamatModel alamat = myService.getAlamatLengkapbyIdKel(keluarga.getId_kelurahan());
 
 		if (penduduk == null) {
@@ -151,5 +152,68 @@ public class TheController {
 		 model.addAttribute("nik_kematian", nik);
 		 return "success-ubah-status-kematian";
 	 }
-
+	
+//	//cari penduduk kota
+//	@RequestMapping(value = "/penduduk/cari", method = RequestMethod.GET)
+//	 public String cariPendudukKota (Model model, 
+//			 @RequestParam(value = "kt", required = false, defaultValue = "0") int id_kota){
+//		 List<KotaModel> kota_list = myService.selectKotaList();
+//		 //List<KecamatanModel> kecamatan_list = myService.selectKecamatanList();
+//		 model.addAttribute("kota_list", kota_list);
+//		 model.addAttribute("kecamatan_list", myService.selectKecamatanList(id_kota));
+//		 //model.addAttribute("kecamatan_list", kecamatan_list);
+//		 System.out.println(kota_list);
+//		 System.out.println(myService.selectKecamatanList(id_kota));
+//		 return "cari-penduduk-kota";
+//	 }
+//
+//	//cari penduduk kecamatan
+//		@RequestMapping(value = "/penduduk/cari?kt={id_kota}&kc={id_kecamatan}", method = RequestMethod.GET)
+//		 public String cariPendudukKecamatan (Model model, 
+//				 @RequestParam(value = "kt", required = false, defaultValue = "0") int id_kota,
+//				 @RequestParam(value = "kc", required = false, defaultValue = "0") int id_kecamatan){
+//			 List<KotaModel> kota_list = myService.selectKotaList();
+//			
+//			 model.addAttribute("kota_list", kota_list);
+//			 model.addAttribute("kecamatan_list", myService.selectKecamatanList(id_kota));
+//			 model.addAttribute("kelurahan_list", myService.selectKelurahanList(id_kecamatan));
+//			
+//			 System.out.println(kota_list);
+//			 System.out.println(myService.selectKecamatanList(id_kota));
+//			 System.out.println(myService.selectKelurahanList(id_kecamatan));
+//			 return "cari-penduduk-kecamatan";
+//		 }
+	
+	@RequestMapping(value = "/penduduk/cari")
+	 public String cariPendudukKelurahan (Model model,
+			 @RequestParam(value = "kt", required = false, defaultValue = "0") int id_kota,
+	         @RequestParam(value = "kc", required = false, defaultValue = "0") int id_kecamatan,
+	         @RequestParam(value = "kl", required = false, defaultValue = "0") int id_kelurahan){
+		 List<KotaModel> kota_list = myService.selectKotaList();
+		 model.addAttribute("kota_list", kota_list);
+		 System.out.println(kota_list);
+		 if (id_kelurahan != 0) {
+			 model.addAttribute("nama_kota", myService.selectKotabyID(id_kota).getNama_kota());
+			 model.addAttribute("id_kota", id_kota);
+			 model.addAttribute("nama_kecamatan", myService.selectKecamatanbyID(id_kecamatan).getNama_kecamatan());
+			 model.addAttribute("id_kecamatan", id_kecamatan);
+			 model.addAttribute("nama_kelurahan", myService.selectKelurahanbyID(id_kelurahan).getNama_kelurahan());
+			 model.addAttribute("id_kelurahan", id_kelurahan);
+			 model.addAttribute("view", "view");
+			 model.addAttribute("penduduk_list", myService.selectPendudukByIdKelurahan(id_kelurahan));
+			 model.addAttribute("penduduk_termuda", myService.getPendudukTermudaSekelurahan(id_kelurahan));
+			 model.addAttribute("penduduk_tertua", myService.getPendudukTertuaSekelurahan(id_kelurahan));
+		 } else if (id_kecamatan != 0) {
+			 model.addAttribute("nama_kota", myService.selectKotabyID(id_kota).getNama_kota());
+			 model.addAttribute("id_kota", id_kota);
+			 model.addAttribute("nama_kecamatan", myService.selectKecamatanbyID(id_kecamatan).getNama_kecamatan());
+			 model.addAttribute("id_kecamatan", id_kecamatan);
+			 model.addAttribute("kelurahan_list", myService.selectKelurahanList(id_kecamatan));
+		 } else if (id_kota != 0) {
+			 model.addAttribute("nama_kota", myService.selectKotabyID(id_kota).getNama_kota());
+			 model.addAttribute("id_kota", id_kota);
+			 model.addAttribute("kecamatan_list", myService.selectKecamatanList(id_kota));
+		 }
+		 return "cari-penduduk";
+	 }
 }

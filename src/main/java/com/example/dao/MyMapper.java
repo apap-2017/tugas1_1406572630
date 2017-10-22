@@ -107,11 +107,6 @@ public interface MyMapper {
 			+ "ON keluarga.id = penduduk.id_keluarga")
 	List<PendudukModel> selectPendudukByIdKelurahan(int id_kelurahan);
 
-	@Select("select nik, nama, tanggal_lahir from penduduk JOIN "
-			+ "(select id from keluarga where id_kelurahan = #{id_kelurahan}) AS keluarga "
-			+ "ON keluarga.id = penduduk.id_keluarga " + "ORDER BY tanggal_lahir DESC " + "LIMIT 1")
-	PendudukModel getPendudukTermudaSekelurahan(int id_kelurahan);
-
 	@Select("select id_kelurahan from keluarga where id = #{id_kelurahan}")
 	String selectPendudukID(int id_kelurahan);
 
@@ -161,7 +156,19 @@ public interface MyMapper {
 	@Update("update keluarga SET is_tidak_berlaku = '1' WHERE id = #{id}")
 	void updateStatusBerlaku(@Param("id") int id);
 	
-	
+	@Select("select nik, nama, tanggal_lahir from penduduk JOIN "
+    		+ "(select id from keluarga where id_kelurahan = #{id_kelurahan}) AS keluarga "
+    		+ "ON keluarga.id = penduduk.id_keluarga "
+    		+ "ORDER BY tanggal_lahir DESC "
+    		+ "LIMIT 1")
+    PendudukModel getPendudukTermudaSekelurahan(int id_kelurahan);
+    
+    @Select("select nik, nama, tanggal_lahir from penduduk JOIN "
+    		+ "(select id from keluarga where id_kelurahan = #{id_kelurahan}) AS keluarga "
+    		+ "ON keluarga.id = penduduk.id_keluarga "
+    		+ "ORDER BY tanggal_lahir ASC "
+    		+ "LIMIT 1")
+    PendudukModel getPendudukTertuaSekelurahan(int id_kelurahan);
 
 
 }

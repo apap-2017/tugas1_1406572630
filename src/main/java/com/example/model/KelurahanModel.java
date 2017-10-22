@@ -13,5 +13,4 @@ public class KelurahanModel {
 	private String kode_kelurahan;
 	private String nama_kelurahan;
 	private int kode_pos;
-	private KecamatanModel kecamatan;
 }

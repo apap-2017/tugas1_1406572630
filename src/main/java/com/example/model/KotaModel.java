@@ -14,5 +14,4 @@ public class KotaModel {
 	private int kode_kota;
 	private String nama_kota;
 	private List<KecamatanModel> kecamatan_list;
-	private KotaModel kota;
 }
