@@ -78,8 +78,7 @@
 							<td>
 								<button class="btn-link" th:text="${penduduk_termuda.nik}"
 									th:value="${penduduk_termuda.nik}"
-									onclick="lihatNik(this.value)"
-									style="padding: 0px 0px 0px 0px;"></button>
+									onclick="lihatNik(this.value)"></button>
 							</td>
 						</tr>
 						<tr>
@@ -102,8 +101,7 @@
 							<td>
 								<button class="btn-link" th:text="${penduduk_tertua.nik}"
 									th:value="${penduduk_tertua.nik}"
-									onclick="lihatNik(this.value)"
-									style="padding: 0px 0px 0px 0px;"></button>
+									onclick="lihatNik(this.value)"></button>
 							</td>
 						</tr>
 						<tr>
@@ -130,8 +128,7 @@
 					<tr th:each="penduduk,iterationStatus: ${penduduk_list}">
 						<td>
 							<button class="btn-link" th:text="${penduduk.nik}"
-								th:value="${penduduk.nik}" onclick="lihatNik(this.value)"
-								style="padding: 0px 0px 0px 0px;"></button>
+								th:value="${penduduk.nik}" onclick="lihatNik(this.value)"></button>
 						</td>
 						<td th:text="${penduduk.nama}"></td>
 						<td
